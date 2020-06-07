@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+{% block admin %}
+            {{ form_start(templateForm, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'badgeRule-form'}})
+            }}
+            <div class="x_title">
+                <h3>Template Edit:</h3>
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_widget(templateForm.name, {value : template.getName}) }}
+                {{ form_errors(templateForm.name) }}
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_widget(templateForm.content, {value : template.getContent}) }}
+                {{ form_errors(templateForm.content) }}
+                <p><i>Put placeholders between "[[","]]". Example: <b>[[ email ]]</b></i></p>
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_widget(templateForm.rule, {value : template.getRule}) }}
+                {{ form_errors(templateForm.rule) }}
+            </div>     
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(templateForm.executionFunction) }}
+                {{ form_errors(templateForm.executionFunction) }}
+            </div>
+            <div class="col-md-12 col-sm-6  form-group has-feedback">
+            {{ form_widget(templateForm.save, { 'label': 'Save' }) }}
+            {{ form_end(templateForm) }}
+            </div>
+            {{ form_end(templateForm) }}
+{% endblock %}

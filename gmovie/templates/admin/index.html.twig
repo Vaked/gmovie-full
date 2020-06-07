@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.twig' %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <h3>ADMIN PANEL</h3>
+        </div>
+        {% block admin %}{% endblock %}
+        
+    </div>
+</div>
+{% endblock %}
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/admin.js') }}"></script>
+{% endblock %}

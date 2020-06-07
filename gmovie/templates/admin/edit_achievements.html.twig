@@ -1,0 +1,36 @@
+{% extends 'admin/index.html.twig' %}
+{% block admin %}
+<div class="x_panel">
+    <div class="x_content">
+        <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="badge-tab" data-toggle="tab" href="#badge" role="tab"
+                    aria-controls="badge" aria-selected="true">Badge</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="rule-tab" data-toggle="tab" href="#rule" role="tab" aria-controls="rule"
+                    aria-selected="false">Rules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="achievement-tab" data-toggle="tab" href="#achievement" role="tab"
+                    aria-controls="achievement" aria-selected="false">Achievements</a>
+            </li>
+        </ul>
+
+        {% include 'admin/badge.html.twig' %}
+
+        {% include 'admin/rule.html.twig' %}
+
+        {% include 'admin/achievement.html.twig' %}
+
+    </div>
+</div>
+{% endblock %}
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/validator/validator.js') }}"></script>
+{% endblock %}
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/admin.js') }}"></script>
+{% endblock %}

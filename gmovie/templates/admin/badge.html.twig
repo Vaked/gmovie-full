@@ -1,0 +1,43 @@
+<div class="tab-pane fade active show" id="badge" role="tabpanel" aria-labelledby="badge-tab">
+    {% include 'admin/badge_form.html.twig' %}
+    <div class="x_title">
+        <h3>All badges:</h3>
+    </div>
+    <table id="badgeTable" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 20%">Badge Name</th>
+                <th style="width: 20%"></th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for badge in badges %}
+            <tr>
+                <td>
+                    {{ badge.getName is defined ? badge.getName : 'N/A' }}
+                </td>
+                <td>
+                    <a href="/badge/edit/{{ badge.getId }}" class="btn btn-info btn-xs">Edit</a>
+                    <button type="button" data-id="{{badge.getId}}"
+                        class="btnDelete btn btn-danger btn-xs">Delete</i></button>
+                </td>
+                <td class="badge_toggle">
+                    <div class="">
+                        <label>
+                            <input data-id="{{ badge.getId }}" type="checkbox" 
+                            {% if badge.getIsActive == true %} 
+                                checked
+                            {% endif %} 
+                            class="js-switch" data-switchery="true" style="display: none;">
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% block customjs %}
+<link href="{{ asset('web/customcss/style.css') }}" rel="stylesheet">
+{% endblock %}

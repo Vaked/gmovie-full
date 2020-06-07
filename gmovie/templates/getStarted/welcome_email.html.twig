@@ -1,0 +1,11 @@
+<h1>Welcome {{ username }}!</h1>
+
+<p>
+    Your registration have been completed. <br/>
+    To get started please click on the link below.
+</p>
+<p><code>{{ username }}</code></p>
+
+<p>
+    <a href="{{ absolute_url(path('get_started')) }}">Click here to get started</a>
+</p>

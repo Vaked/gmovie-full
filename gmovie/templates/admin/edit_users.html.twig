@@ -1,0 +1,73 @@
+{% extends 'admin/index.html.twig' %}
+{% block admin %}
+
+        
+         <div class="col-md-12 col-sm-12  ">
+                   {# read and display just one flash message type #}
+          {% if app.flashes('success') is defined %}
+               {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+          {% endif %} 
+          {% if app.flashes('error') is defined %}
+               {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">
+                        {{ message.getMessage }}
+                    </div>
+                {% endfor %}
+          {% endif %}        
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reset passwords <small>Reset passwords</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title">#</th>
+                            <th class="column-title">User Name </th>
+                            <th class="column-title">Email </th>
+                            <th class="column-title">Name </th>
+                            <th class="column-title">Surname </th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+
+                         {% if users is defined %}
+                                {% for key, user in users %}                          
+                                    <tr class="{{(key is odd) ? 'odd' : 'even'}} pointer">
+                                        <td class=" ">{{ loop.index }}</td>
+                                        <td class=" ">{{ user.username }}</td>
+                                        <td class=" ">{{ user.email }}</td>
+                                        <td class=" ">{{ user.userProfile.name }}</td>
+                                        <td class=" ">{{ user.userProfile.surname }}</td>
+                                        <td class=" last"><a href="{{ path('admin_reset_password', { 'id': user.id }) }}">Reset</a>
+                                        </td>
+                                     </tr>
+                                {% endfor %}
+                         {% endif %}
+                                
+                        </tbody>
+                      </table>
+        </div>
+           
+
+{% endblock %}

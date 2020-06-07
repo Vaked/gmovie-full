@@ -1,0 +1,34 @@
+{{ form_start(formAchievement, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'rule-form'}})
+}}
+<div class="x_title">
+    <h3>Rule:</h3>
+</div>
+<div class="col-md-12 col-sm-12  form-group has-feedback">
+    {{ form_row(formAchievement.name, {'value': rule.getName ?? null}) }}
+    {{ form_errors(formAchievement.name) }}
+</div>
+<div id="rule_container">
+    {% for condition in formAchievement.rule %}
+    <div class="rule">
+        <div class="col-md-12 col-sm-12  form-group has-feedback">
+            {{ form_errors(condition.count) }}
+            {{ form_row(condition.count) }}
+        </div>
+        <div class="col-md-6 col-sm-6  form-group has-feedback">
+            {{ form_errors(condition.type) }}
+            {{ form_row(condition.type) }}
+        </div>
+        <div class="col-md-6 col-sm-6  form-group has-feedback">
+            {{ form_errors(condition.value) }}
+            {{ form_row(condition.value) }}
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-6  form-group has-feedback">
+    <a href="javascript:;" class="add-rule" title="Add a rule"><i style="color:green" class="fa fa-plus-circle"></i></a>
+</div>
+    {% endfor %}
+</div>
+<div class="col-md-12 col-sm-6  form-group has-feedback">
+    {{ form_widget(formAchievement.save, { 'label': 'Save' }) }}
+    {{ form_end(formAchievement) }}
+</div>

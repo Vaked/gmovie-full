@@ -1,0 +1,35 @@
+{% set IS_AUTHENTICATED_FULLY_DUMMY = false %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}gMovie{% endblock %}</title>
+  {% include 'layouts/includes_css.html.twig' %}
+  {% block cssvendors %}{% endblock %}
+  {% block customcss %}{% endblock %}
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      {% include 'layouts/header.html.twig' %}
+      <div class="right_col" role="main" style="min-height: 7810px;">
+      {% block pagetitle %}{% endblock %}
+        <div class="">
+          <!--<div class="row">-->
+            <div class="col-md-12">
+              {% block body %}{% endblock %}
+            </div>
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'layouts/includes_js.html.twig' %}
+  {% block jsvendors %}{% endblock %}
+  {% block customjs %}{% endblock %}
+</body>
+
+</html>

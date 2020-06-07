@@ -1,0 +1,97 @@
+{% extends 'layouts/base.html.twig' %}
+{% block cssvendors %}
+<link href="{{ asset('web/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('web/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <div class="login_wrapper">
+                <section class="login_content">
+                    {{ form_start(form, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'registration'}})
+                    }}
+                    <h1>Create Account</h1>
+                    {% if errors is defined and errors is not empty %}
+                    {% for error in errors %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% if error is defined and error is not empty %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.name) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.surname) }}
+                        {{ form_errors(form.surname) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.birthday) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.address) }}
+                        {{ form_errors(form.address) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.country) }}
+                        {{ form_errors(form.country) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.city) }}
+                        {{ form_errors(form.city) }}
+                    </div>
+
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.plainPassword.first) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.plainPassword.second) }}
+
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        {{ form_row(form.username) }}
+                        {{ form_errors(form.username) }}
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group">
+                        {{ form_row(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        <label>
+                            I accept receiving advertising emails
+                            {{ form_row(form.receiveAdvertisement) }}
+                            {{ form_errors(form.receiveAdvertisement) }}
+                        </label>
+                    </div>
+                    {{ form_widget(form.save, { 'label': 'Save' }) }}
+
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <p class="change_link">Already a member ?
+                            <a href="/login" class="to_register"> Log in </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br />
+                    </div>
+                    {{ form_end(form) }}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('web/vendors/validator/validator.js') }}"></script>
+<script src="{{ asset('web/customjs/form-init.js') }}"></script>
+{% endblock %}
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+{% endblock %}

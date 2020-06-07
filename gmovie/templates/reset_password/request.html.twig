@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html.twig' %}
+{% block cssvendors %}
+<link href="{{ asset('web/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('web/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}Reset your password{% endblock %}
+
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
+<div class="login_wrapper">
+    <div class="form reset_password_form">
+            <section class="login_content">
+                <form method="post" id="password">
+                    <h1>Reset your password</h1>
+                    {{ form_start(requestForm) }}
+                    {% if error is defined and error is not empty %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                        {{ form_row(requestForm.email) }}
+                                <div>
+                                   <small><b>
+                                        Enter your email address and we we will send you a
+                                        link to reset your password.
+                                    </small></b>
+                                </div>
+                            <button class="btn btn-secondary btn-sm submit">Send password reset email</button>
+                    {{ form_end(requestForm) }}
+                </form>
+            </section>
+    </div>
+</div>
+{% endblock %}

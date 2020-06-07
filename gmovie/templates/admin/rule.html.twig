@@ -1,0 +1,66 @@
+<div class="tab-pane fade" id="rule" role="tabpanel" aria-labelledby="rule-tab">
+    {% include 'admin/rule_form.html.twig' %}
+    <div class="x_title">
+        <h3>All rules:</h3>
+        <table id="ruleTable" class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 20%">Rule name</th>
+                    <th style="width: 20%"></th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule in rules %}
+                <tr>
+                    <td>
+                        {{ rule.getName is defined ? rule.getName : 'N/A' }}
+                    </td>
+                    <td>
+                        <a href="/rule/edit/{{ rule.getId }}" class="btn btn-info btn-xs">Edit</a>
+                        <button type="button" data-id="{{rule.getId}}"
+                            class="btnDelete btn btn-danger btn-xs">Delete</i></button>
+                    </td>
+
+                    <td class="rule_toggle">
+                        <div class="">
+                            <label>
+                                <input data-id="{{ rule.getId }}" type="checkbox"
+                                {% if rule.getIsActive == true %}
+                                checked
+                                {% endif %}
+                                 class="js-switch" data-switchery="true"
+                                    style="display: none;">
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<script id="ruleTemplate" type="template">
+
+    <div class='rule'><div class='col-md-12 col-sm-12  form-group has-feedback'>
+    <div><input type='number' name='achievement[rule][{<{counter}>}][count]' required='required' class='form-control' placeholder='Count*'></div>
+    </div>
+
+    <div class="col-md-6 col-sm-6  form-group has-feedback">     
+    <div><select name="achievement[rule][{<{counter}>}][type]" class="form-control valid" aria-invalid="false"><option value="Type" selected="selected" disabled="disabled" hidden="hidden">Type</option><option value="Genre">Genre</option><option value="Director">Director</option><option value="Year">Year</option></select></div>
+    </div>
+
+    <div class='col-md-6 col-sm-6  form-group has-feedback'>
+    <div><input type='text' name='achievement[rule][{<{counter}>}][value]' class='form-control' placeholder='Type Value'></div>
+    </div>
+    <div class="col-md-12 col-sm-6  form-group has-feedback">
+    <a href="javascript:;" class="remove-rule" title="Add a rule"><i style="color:red"
+            class="fa fa-minus-circle"></i></a>
+    </div>
+    </div>
+
+</script>
+{% block customjs %}
+<link href="{{ asset('web/customcss/style.css') }}" rel="stylesheet">
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html.twig' %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <h3>{{ movie.getTitle }}</h3>
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td rowspan="6"><img class="img-fluid" height="100%" width="200" src="{{ movie.getPosterPath is defined ? movie.getPosterPath : asset('web/images/default-poster.jpg') }}" alt=""><br/></td>
+                    <td><b>Year:</b> {{ movie.getYear is defined ? movie.getYear : 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Director:</b> {{ movie.getDirector is defined ? movie.getDirector : 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Genre:</b> {{ movie.getGenre is defined ? movie.getGenre : 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Cast:</b> {{ movie.getCast is defined ? movie.getCast : 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Rating:</b> {{ movie.getRate is defined ? movie.getRate : 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Synopsis:</b> {{ movie.getSynopsis is defined ? movie.getSynopsis : 'N/A' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

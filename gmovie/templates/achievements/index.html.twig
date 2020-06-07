@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html.twig' %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <h3>Yours Achievements</h3>
+        </div>
+        <div class="container">
+            {% for achievement in user_achievements %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 10rem;">
+                    <img src="{{ achievement.getBadge.getImgUrl }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h7 class="card-title">{{ achievement.getAchievement.getName }}</h7>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="x_content">
+        <div class="x_title">
+            <h3>All Achievements</h3>
+        </div>
+        <div class="container">
+            {% for achievement in achievements %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 10rem;">
+                    <img src="{{ achievement.getBadge.getImgUrl }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h7 class="card-title">{{ achievement.getAchievement.getName }}</h7>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

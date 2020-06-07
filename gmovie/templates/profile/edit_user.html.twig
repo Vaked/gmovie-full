@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html.twig' %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <div class="login_wrapper">
+                <section class="login_content">
+                    {{ form_start(form, {'attr': {'class':'form-horizontal form-label-left','novalidate': 'novalidate', 'id': 'registration'}})
+                    }}
+                    <h1>Edit Account</h1>
+                    {% if errors is defined and errors is not empty %}
+                    {% for error in errors %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% if error is defined and error is not empty %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+                    <div class="form-group has-feedback">
+                    <label>Name</label>
+                        {{ form_widget(form.name, {'value' : user.getName}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    <div class="form-group has-feedback">
+                    <label>Surname</label>
+                        {{ form_widget(form.surname, {'value' : user.getSurname}) }}
+                        {{ form_errors(form.surname) }}
+                    </div>
+                    <div class="form-group has-feedback">
+                    <label>Address</label>
+                   {{ form_widget(form.address, {'value' : user.getAddress}) }}
+                        {{ form_errors(form.address) }}
+                    </div>
+                    <div class="form-group has-feedback">
+                    <label>Country</label>
+                  {{ form_widget(form.country, {'value' : user.getCountry}) }}
+                        {{ form_errors(form.country) }}
+                    </div>
+                    <div class="form-group has-feedback">
+                    <label>City</label>
+                    {{ form_widget(form.city, {'value' : user.getCity}) }}
+                        {{ form_errors(form.city) }}
+                    </div>
+                    {{ form_widget(form.save, { 'label': 'Save' }) }}
+                    {{ form_end(form) }}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block cssvendors %}
+<link href="{{ asset('web/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('web/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+{% endblock %}
+
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/form-init.js') }}"></script>
+{% endblock %}

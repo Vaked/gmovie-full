@@ -1,0 +1,100 @@
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="/home" class="site_title"><i class="fa fa-video-camera"></i> <span>gMovie</span></a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="profile clearfix">
+      <div class="profile_info">
+        <span>Welcome</span>
+        <h2>{{ app.user.username }}</h2>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
+
+    <br>
+
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section active">
+        <h3>General</h3>
+      
+        <ul class="nav side-menu" style="">
+          <li class="{{ app.request.get('_route') == 'profile' ? 'active' }}"><a href="{{ path('profile') }}"><i class="fa fa-user"></i> Profile <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu" style="display: {{ app.request.get('_route') == 'profile' ? 'block' : 'display: none;' }}">
+              <li><a href="{{ path('profile') }}><i class="fa fa-film"></i>View movies</a></li>
+              <li><a href="{{ path('edit') }}"><i class="fa fa-pencil"></i>Edit profile</a></li>
+              <li><a href="{{ path('change_password') }}"><i class="fa fa-pencil"></i>Change password</a></li>
+              <li><a href="{{ path('achievements') }}"><i class="fa fa-star"></i> Achievements</a></li>
+            </ul>
+          </li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li  class="{{ app.request.get('_route') == 'admin' ? 'active' }}"><a href="{{ path('admin') }}"><i class="fa fa-cogs"></i> Administration <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu" style="display: {{ app.request.get('_route') == 'admin' ? 'block' : 'none' }}">
+              <li><a href="{{ path('edit_users') }}"><i class="fa fa-users"></i>Edit Users</a></li>
+              <li><a href="{{ path('edit_achievements') }}"><i class="fa fa-star"></i> Edit Achievements</a></li>
+              <li><a href="{{ path('edit_templates') }}"><i class="fa fa-star"></i>Templates</a></li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <!-- /sidebar menu -->
+
+    <!-- /menu footer buttons -->
+    <div class="sidebar-footer hidden-small">
+      <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="" data-original-title="FullScreen">
+        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Lock">
+        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="" href="/logout" data-original-title="Logout">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      </a>
+    </div>
+    {% endif %}
+    <!-- /menu footer buttons -->
+  </div>
+</div>
+<div class="top_nav">
+  <div class="nav_menu">
+    <div class="nav toggle">
+      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+    </div>
+    <nav class="nav navbar-nav">
+      <ul class=" navbar-right">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li class="nav-item dropdown open" style="padding-left: 15px;">
+          <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+            data-toggle="dropdown" aria-expanded="false">
+            {{ app.user.username }}
+          </a>
+          <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/profile"> Profile</a>
+            <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+          </div>
+        </li>
+
+        <li role="presentation" class="nav-item">
+          <a href="{{ path('achievements') }}" class="info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+            <i title="Achievements" class="fa fa-star"></i>
+          </a>
+        </li>
+        {% else %}
+        <li role="presentation" class="nav-item" >
+          <a href="/login">Log in</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>

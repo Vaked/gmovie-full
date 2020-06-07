@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html.twig' %}
+{% block cssvendors %}
+<link href="{{ asset('web/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('web/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div>
+    <div class="login_wrapper">
+        <div class="form login_form">
+            <section class="login_content">
+                <form method="post" id="login">
+                    <h1>Login Form</h1>
+                    {% if error is defined and error is not empty %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    {% if message is defined %}
+                    <div class="alert alert-success">{{ message }}</div>
+                    {% endif %}
+                    <div>
+                        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email:"
+                            required />
+                    </div>
+                    <div>
+                        <input type="password" name="password" id="inputPassword" class="form-control"
+                            placeholder="Password" required />
+                    </div>
+                    <div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-secondary btn-sm submit">
+                            Sign in
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <p class="change_link">New to site?
+                            <a href="/register" class="to_register"> Create Account </a>
+                        </p>
+                        <p class="change_link">Have an existing account? 
+                            <a href="{{ absolute_url(path('app_forgot_password_request')) }}" class="Forgotten_pass"> Forgotten password</a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br />
+                        <div>
+                            <h1><i class="fa fa-video-camera"></i> <span>gMovie</span></h1>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+{% endblock %}
+
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/form-init.js') }}"></script>
+{% endblock %}

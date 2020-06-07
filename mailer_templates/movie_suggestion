@@ -1,0 +1,11 @@
+<h1>Hello {{ username }}!</h1>
+
+<p><b>
+    Here is a list of suggested movies that might be of interest to you! <br/>
+</b></p>
+
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.getTitle|e }}</li>
+    {% endfor %}
+</ul>

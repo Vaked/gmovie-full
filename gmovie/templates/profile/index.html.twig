@@ -1,0 +1,83 @@
+{% extends 'layouts/base.html.twig' %}
+{% block body %}
+<div class="x_panel">
+    <div class="x_content">
+        <div class="x_title">
+            <h3>Achievements</h3>
+        </div>
+
+        <div class="container">
+            {% for achievement in achievements %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 10rem;">
+                    <img src="{{ achievement.getBadge.getImgUrl }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h7 class="card-title">{{ achievement.getAchievement.getName }}</h7>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="x_content">
+        <div class="x_title">
+            <h3>My Movie List</h3>
+        </div>
+        <table id="movieTable" class="table dataTable table-striped projects" role="grid"
+            aria-describedby="datatable_info">
+            <thead>
+                <tr>
+                    <th style="width: 1%">#</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                        style="width: 106px;" aria-sort="ascending"
+                        aria-label="Name: activate to sort column descending">Movie</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                        style="width: 106px;" aria-sort="ascending"
+                        aria-label="Name: activate to sort column descending">Status</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                        style="width: 106px;" aria-sort="ascending"
+                        aria-label="Name: activate to sort column descending">Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in history %}
+                <tr role="row" class="{{ loop.index is odd ? 'odd' : 'even' }}">
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <a>{{ movie.movie.getTitle }}</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn
+                        {% if movie.getStatus == constant('LIKE', movie) %}
+                        btn-success
+                        {% elseif movie.getStatus == constant('SEEN', movie) %}
+                        btn-primary
+                        {% else %}
+                        btn-danger
+                        {% endif %}
+                         btn-xs" disabled>{{ movie.getStatusValue }}</button>
+                    </td>
+                    <td>
+                        <a href="/movie/{{ movie.movie.getId }}" disable class="btn btn-lg"><i class="fa fa-info-circle"
+                                aria-hidden="true"></i></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('web/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+{% endblock %}
+
+{% block customjs %}
+<script src="{{ asset('web/customjs/scripts.js') }}"></script>
+{% endblock %}
+
+
+{% block cssvendors %}
+<link href="{{ asset('web/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+{% endblock %}

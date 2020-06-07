@@ -1,0 +1,11 @@
+<h1>Hello {{ username }}!</h1>
+
+<p><b>
+    There are unwatched movies left in your bucket list. <br/>
+</b></p>
+
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.getTitle|e }}</li>
+    {% endfor %}
+</ul>

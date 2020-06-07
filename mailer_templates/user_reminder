@@ -1,0 +1,10 @@
+<h1>Welcome {{ email }}!</h1>
+
+<p>
+    You signed up as {{ email }} the following email:
+</p>
+<p><code>{{ email }}</code></p>
+
+<p>
+    <a href="{{ absolute_url(path('activate', { 'activationCode': activation_code })) }}">Click here to activate your account</a>
+</p>

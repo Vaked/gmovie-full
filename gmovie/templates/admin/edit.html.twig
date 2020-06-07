@@ -1,0 +1,41 @@
+{% extends 'admin/index.html.twig' %}
+{% block admin %}
+
+{% if badge is defined %}
+{% include 'admin/badge_form.html.twig' %}
+{% endif %}
+
+{% if rule is defined %}
+{% include 'admin/rule_form.html.twig' %}
+{% endif %}
+
+{% if achievement is defined %}
+{% include 'admin/achievement_form.html.twig' %}
+{% endif %}
+
+{% endblock %}
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/validator/validator.js') }}"></script>
+{% endblock %}
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/admin.js') }}"></script>
+<script id="ruleTemplate" type="template">
+    <div class='rule'><div class='col-md-12 col-sm-12  form-group has-feedback'>
+    <div><input type='number' name='achievement[rule][{<{counter}>}][count]' required='required' class='form-control' placeholder='Count*'>
+    </div>
+    </div>
+    <div class="col-md-6 col-sm-6  form-group has-feedback">     
+    <div><select name="achievement[rule][{<{counter}>}][type]" class="form-control valid" aria-invalid="false"><option value="Type" selected="selected" disabled="disabled" hidden="hidden">Type</option><option value="Genre">Genre</option><option value="Director">Director</option><option value="Year">Year</option></select></div></div>    
+    <div class='col-md-6 col-sm-6  form-group has-feedback'>
+    <div><input type='text' name='achievement[rule][{<{counter}>}][value]' class='form-control' placeholder='Type Value' value=''></div>
+    </div>
+    <div class="col-md-12 col-sm-6  form-group has-feedback">
+    <a href="javascript:;" class="remove-rule" title="Add a rule"><i style="color:red"
+            class="fa fa-minus-circle"></i></a>
+</div>
+    </div>
+
+</script>
+{% endblock %}

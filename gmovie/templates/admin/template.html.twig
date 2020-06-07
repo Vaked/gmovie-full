@@ -1,0 +1,64 @@
+{% extends 'admin/index.html.twig' %}
+{% block admin %}
+
+            {{ form_start(templateForm, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'badgeRule-form'}})
+            }}
+            <div class="x_title">
+                <h3>Template:</h3>
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(templateForm.name) }}
+                {{ form_errors(templateForm.name) }}
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(templateForm.content) }}
+                {{ form_errors(templateForm.content) }}
+                <p><i>This field accepts <b>twig</b> syntax.</i></p>
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(templateForm.rule) }}
+                {{ form_errors(templateForm.rule) }}
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(templateForm.executionFunction) }}
+                {{ form_errors(templateForm.executionFunction) }}
+            </div>
+            <div class="col-md-12 col-sm-6  form-group has-feedback">
+            {{ form_widget(templateForm.save, { 'label': 'Save' }) }}
+            {{ form_end(templateForm) }}
+            </div>
+            {{ form_end(templateForm) }}
+  <h3>All Tempaltes:</h3>
+                <table id="templateTable" class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">Template Name</th>
+                            <th style="width: 20%">Rule</th>
+                            <th style="width: 20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for template in templates %}
+                        <tr>
+                            <td>
+                                {{ template.getName is defined ? template.getName : 'N/A' }}
+                            </td>
+                            <td>
+                                {{ template.getRule is defined ? template.getRule : 'N/A' }}
+                            </td>
+                            <td>
+                                <a href="/template/edit/{{ template.getId }}" class="btn btn-info btn-xs">Edit</a>
+                                <button type="button" data-id="{{template.getId}}" class="btnDelete btn btn-danger btn-xs">Delete</i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+{% endblock %}
+{% block jsvendors %}
+<script src="{{ asset('web/vendors/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('web/vendors/validator/validator.js') }}"></script>
+{% endblock %}
+{% block customjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="{{ asset('web/customjs/admin.js') }}"></script>
+{% endblock %}

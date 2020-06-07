@@ -1,0 +1,15 @@
+            {{ form_start(achievementBadge, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'badgeRule-form'}})
+            }}
+            <div class="x_title">
+                <h3>Achievement:</h3>
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(achievementBadge.badge) }}
+                {{ form_errors(achievementBadge.badge) }}
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(achievementBadge.achievement) }}
+                {{ form_errors(achievementBadge.achievement) }}
+            </div>
+            {{ form_widget(achievementBadge.save, { 'label': 'Save' }) }}
+            {{ form_end(achievementBadge) }}

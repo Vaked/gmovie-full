@@ -1,0 +1,41 @@
+<table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 1%">#</th>
+                    <th style="width: 20%">Poster</th>
+                    <th>Movie name</th>
+                    <th>Info</th>
+                    <th style="width: 20%"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if movies is defined %}
+            {% for movie in movies %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <img class="img-thumbnail" src="{{ movie.getPosterPath is defined ? movie.getPosterPath : asset('web/images/default-poster.jpg') }}" alt="">
+                    </td>
+                    <td class="project_progress">
+                        {{ movie.getTitle is defined ? movie.getTitle : 'N/A' }}
+                    </td>
+                    <td>
+                        <b>Genre: </b>{{ movie.getGenre is defined ? movie.getGenre : 'N/A' }}<br/>
+                        <b>Rating: </b>{{ movie.getRate is defined ? movie.getRate : 'N/A' }}<br/>
+                    </td>
+                    <td>
+                        {% if app.request.pathinfo == '/home' %}
+                        <button class="personalRate" type="button" data-status="1" data-id="{{ movie.getId }}" class="btn btn-success btn-xs"><i class="fa fa-thumbs-up    "></i> Like </button>
+                        <button class="personalRate" type="button" data-status="2" data-id="{{ movie.getId }}" class="btn btn-primary btn-xs"><i class="fa fa-check    "></i> Seen </button>
+                        <button class="personalRate" type="button" data-status="3" data-id="{{ movie.getId }}" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down    "></i> Dislike </button>
+                        {% elseif info is defined %}
+                            <a href="#" class="btn btn-lg"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                        {% elseif add is defined %}
+                            <a href="#" class="btn btn-lg"><i title="add" class="fa fa-plus" aria-hidden="true"></i></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>

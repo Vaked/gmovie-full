@@ -1,0 +1,25 @@
+            {{ form_start(formBadge, {'attr': {'class':'needs-validation','novalidate': 'novalidate', 'id': 'badge-form'}})
+            }}
+            <div class="x_title">
+                <h3>Badge:</h3>
+            </div>
+            {% if errors is defined %}
+            {% for error in errors %}
+            <div class="alert alert-danger">
+                {{ error.message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(formBadge.name) }}
+                {{ form_errors(formBadge.name) }}
+            </div>
+            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                {{ form_row(formBadge.image) }}
+                {% if badge is defined %}
+                <img src="{{ badge.getImgUrl }}">
+                {% endif %}
+                {{ form_errors(formBadge.image) }}
+            </div>
+            {{ form_widget(formBadge.save, { 'label': 'Save' }) }}
+            {{ form_end(formBadge) }}

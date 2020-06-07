@@ -1,0 +1,4 @@
+.table td .btnDelete, .table td .btnDelete:hover{
+    color: #ffff;
+    cursor: pointer;
+}
